@@ -4,9 +4,11 @@
 namespace App\Services;
 
 use App\Models\Post;
+use App\Models\PostImage;
 use App\Repositories\Interfaces\InterfacePostRepository;
 use App\Traits\FileManagement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostService
 {
@@ -20,12 +22,20 @@ class PostService
     }
 
     public function store(Request $request) {
+
+        DB::transaction(function () use($request) {
         $post = new Post($request->validated());
-        if ($request->image)
-        // upload image
-           //  $post->image = $this->uploadImage($request->image,'uploads/tool');
+        $post->user_id = $request->user()->id;
         $this->postRepository->save($post);
+
+     if ($request->postImages){
+            foreach($request->postImages as $postImage){
+                $image = $this->uploadFile($postImage,'Images/Posts');
+                $post->images()->create(['image' => $image]);
+            }
+        }
         return $post;
+      });
     }
 
 }

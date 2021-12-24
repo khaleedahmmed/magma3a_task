@@ -40,8 +40,8 @@ class HomeController extends Controller
      */
     public function store(PostRequest $postRequest)
     {
-        $tool = $this->postService->store($postRequest);
-        return redirect()->route('tools.index');
+        $post = $this->postService->store($postRequest);
+        return redirect()->route('website.index');
     }
 
 }

@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 Route::group(['middleware' => 'auth'], function () {
-Route::get('/', [HomeController::class, 'index'] );
-
+    Route::post('/store', [HomeController::class, 'store'])->name('post.store');
 });
+Route::get('/', [HomeController::class, 'index'])->name('website.index');

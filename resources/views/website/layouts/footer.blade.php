@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="copyright-text">
-            <p>Copyright 2020 khaled Ahmed.
+            <p>Copyright 2022 khaled Ahmed.
 
           </div>
         </div>

@@ -16,11 +16,8 @@ class PostImage extends Model
      * @var array
      */
     protected $fillable = [
-        'image',
+        'image','post_id'
     ];
 
-    public function images()
-    {
-        return $this->belongsTo(PostImage::class, 'post_id', 'id');
-    }
+
 }

@@ -1,7 +1,6 @@
 @extends('website.layouts.master')
 @section('title','home')
 @section('content')
-<input type="hidden" name="_token" value="{{ csrf_token() }}" id="token"/>
 
   <!-- Page Content -->
     <!-- Banner Starts Here -->
@@ -9,7 +8,7 @@
       <section class="page-heading">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
               <div class="text-content">
                 <h4>Magma'a Task</h4>
                 <h2>Here You Can Find The Posts</h2>
@@ -23,6 +22,22 @@
 
 
 <div class="container bootdey">
+
+<div class="col-md-12 bootstrap snippets">
+    <div class="panel">
+        <div class="panel-body">
+            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+          <textarea name="content" id="" cols="30"  placeholder="What do you think?"></textarea>
+          <div class="mar-top clearfix">
+            <input type="file" name="postImages[]" id="" multiple>
+            <button type="submit" class="btn btn-sm btn-primary pull-right"><i class="fa fa-send fa-fw"></i> post</button>
+          </div>
+          <div id="err"></div>
+            </form>
+        </div>
+      </div>
+</div>
 <div class="col-md-12 bootstrap snippets">
     <div class="panel">
     @foreach ($posts as $post)
@@ -30,36 +45,25 @@
     <!-- Newsfeed Content -->
     <!--===================================================-->
     <div class="media-block">
-     <div class="post">
-      <a class="media-left" href="#"><img class="rounded-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+     <div class="article">
+      <a class="media-left" href="#"><img class="rounded-circle img-sm" alt="Profile Picture" src="{{ url('/Images/Avatar/avatar.png') }}"></a>
       <div class="media-body">
         <div class="mar-btm">
-          <a href="#" class="btn-link text-semibold media-heading box-inline">{{$post->user->name}}</a>
+          <h2>{{$post->user->name}}</h2>
           <p class="text-muted text-sm"> {{$post->created_at->toDateTimeString()}}</p>
         </div>
-        <h2>{{$post->name}}</h2>
-        {{$post->body}}
+        {{$post->content}}
           <div class="pad-ver">
         </div>
       </div>
      </div>
 
-     <div class="panel">
-      <div class="panel-body">
-        <textarea id="textarea_comment{{ $post->id }}" class="form-control" rows="2" placeholder="What do you think?"></textarea>
-        <div class="mar-top clearfix">
-          <a class="btn btn-sm btn-primary pull-right" onclick="addComment('{{ $post->id }}')"><i class="fa fa-comment fa-fw"></i> Comment</a>
-        </div>
-        <div id="err"></div>
-      </div>
-    </div>
-
-    <!--===================================================-->
     <!-- End Newsfeed Content -->
   </div>
 </div>
+@endforeach
 
-
-</div>
-
+       </div>
+     </div>
+   </div>
       @endsection
