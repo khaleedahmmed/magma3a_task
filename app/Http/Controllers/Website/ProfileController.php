@@ -25,7 +25,7 @@ class ProfileController extends Controller
     {
         $posts   = Post::where('user_id', auth()->user()->id)->get();
 
-        return view('website.profile',compact('posts'));
+        return view('website.index',compact('posts'));
     }
 
 

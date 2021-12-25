@@ -1,72 +1,66 @@
-    <!-- Header -->
-    <header class="">
-        <nav class="navbar navbar-expand-lg">
-          <div class="container">
-            <a class="navbar-brand" href="index.html"><h2>Magma'a Task<em>.</em></h2></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home
-                    <span class="sr-only">(current)</span>
-                  </a>
-                </li>
+    <!-- header area start -->
+    <header>
+        <div class="header-top sticky bg-white d-none d-lg-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-5">
+                        <!-- header top navigation start -->
+                        <div class="header-top-navigation">
+                            <nav>
+                                <ul>
+                                    <li><a href="{{ route('website.index') }}">Home</a></li>
+                                   @auth
+                                       <li><a href="{{ route('website.profile') }}">Profile</a></li>
+                                    @else
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                    @endauth
 
-                @if (Route::has('login'))
-                <li class="nav-item">
-                    @auth
-                        {{-- <a class="nav-link" href="{{ url('/home') }}">Home</a> --}}
-               </li>
-                    @else
-                 <li class="nav-item">
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- header top navigation start -->
+                    </div>
 
-                        <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
-                 </li>
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
 
-                            <a class="btn btn-primary" href="{{ route('register') }}">Register</a>
-                        </li>
+                    <div class="col-md-5">
+                        <div class="header-top-right d-flex align-items-center justify-content-end">
+                            <!-- profile picture start -->
+                            <div class="profile-setting-box">
+                                <div class="profile-thumb-small">
+                                    <a href="javascript:void(0)" class="profile-triger">
+                                        <figure>
+                                            <img src="{{ url('/Images/Avatar/avatar.png') }}" alt="profile picture">
+                                        </figure>
+                                    </a>
+                                    @guest
 
-                        @endif
-                    @endauth
+                                    @else
+                                    <div class="profile-dropdown">
+                                        <div class="profile-head">
+                                            <h5 class="name">{{ Auth::user()->name }}</h5>
+                                            <h5 class="name">{{ Auth::user()->email }}</h5>
+                                        </div>
+                                        <div class="profile-body">
+
+                                            <ul>
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <li>  <button type="submit" class="flaticon-unlock">Logout</button></li>
+                                                  </form>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @endguest
+                                </div>
+                            </div>
+                            <!-- profile picture end -->
+                        </div>
+                    </div>
                 </div>
-                @endif
-
-                <li class="nav-item">
-                @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-                 @endif
-                </li>
-            @guest
-
-        @else
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-        @endguest
-
-              </ul>
             </div>
-          </div>
-        </nav>
-      </header>
+        </div>
+    </header>
+    <!-- header area end -->
+
