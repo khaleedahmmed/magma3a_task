@@ -21,3 +21,4 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::get('/', [HomeController::class, 'index'])->name('website.index');
 Route::get('/profile', [ProfileController::class, 'index'])->name('website.profile');
+

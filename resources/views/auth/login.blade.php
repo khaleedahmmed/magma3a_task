@@ -51,6 +51,13 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+
+            <a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
+                <strong>Login With Google</strong>
+              </a>
+            <a href="{{ url('register') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
+                <strong>Register</strong>
+              </a>
         </form>
     </x-auth-card>
 </x-guest-layout>

@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Services\PostService;
-use App\Traits\FileManagement;
 
 class ProfileController extends Controller
 {
-    use FileManagement;
 
     protected $postService;
 

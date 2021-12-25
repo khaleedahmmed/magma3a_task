@@ -37,9 +37,11 @@
             </form>
         </div>
       </div>
+
 </div>
 <div class="col-md-12 bootstrap snippets">
     <div class="panel">
+        <a href="{{ route('website.profile') }}" class="btn btn-sm btn-primary pull-right">My post</a>
     @foreach ($posts as $post)
     <div class="panel-body">
     <!-- Newsfeed Content -->

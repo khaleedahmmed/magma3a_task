@@ -24,21 +24,8 @@
 <div class="container bootdey">
 
 <div class="col-md-12 bootstrap snippets">
-    <div class="panel">
-        <div class="panel-body">
-            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-          <textarea name="content" id="" cols="30"  placeholder="What do you think?"></textarea>
-          <div class="mar-top clearfix">
-            <input type="file" name="postImages[]" id="" multiple>
-            <button type="submit" class="btn btn-sm btn-primary pull-right"><i class="fa fa-send fa-fw"></i> post</button>
-          </div>
-          <div id="err"></div>
-            </form>
-        </div>
-      </div>
-</div>
-<div class="col-md-12 bootstrap snippets">
+    <a href="{{ route('website.index') }}" class="btn btn-sm btn-primary pull-right">All post</a>
+
     <div class="panel">
     @foreach ($posts as $post)
     <div class="panel-body">
