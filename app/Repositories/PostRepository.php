@@ -12,4 +12,13 @@ class PostRepository implements InterfacePostRepository
     {
         return $post->save();
     }
+
+    public function getAll()
+    {
+        return Post::get();
+    }
+    public function myPosts()
+    {
+        return Post::where('user_id', auth()->user()->id )->get();
+    }
 }

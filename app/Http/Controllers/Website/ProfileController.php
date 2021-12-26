@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Repositories\Interfaces\InterfacePostRepository;
 use App\Services\PostService;
 
 class ProfileController extends Controller
 {
 
-    protected $postService;
+    protected $postService, $postRepository;
 
-    public function __construct(PostService $postService)
+    public function __construct(PostService $postService, InterfacePostRepository $postRepository)
     {
         $this->postService = $postService;
+        $this->postRepository = $postRepository;
     }
 
     /**
@@ -23,7 +24,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $posts   = Post::where('user_id', auth()->user()->id)->get();
+        $posts= $this->postRepository->myPosts();
 
         return view('website.index',compact('posts'));
     }

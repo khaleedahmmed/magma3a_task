@@ -3,18 +3,19 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Interfaces\InterfacePostRepository;
 use App\Http\Requests\PostRequest;
-use App\Models\Post;
 use App\Services\PostService;
 
 class HomeController extends Controller
 {
 
-    protected $postService;
+    protected $postService, $postRepository;
 
-    public function __construct(PostService $postService)
+    public function __construct(PostService $postService, InterfacePostRepository $postRepository)
     {
         $this->postService = $postService;
+        $this->postRepository = $postRepository;
     }
 
     /**
@@ -24,8 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts   = Post::get();
-
+        $posts= $this->postRepository->getAll();
         return view('website.index',compact('posts'));
     }
 
@@ -38,7 +38,7 @@ class HomeController extends Controller
      */
     public function store(PostRequest $postRequest)
     {
-        $post = $this->postService->store($postRequest);
+         $this->postService->store($postRequest);
         return redirect()->route('website.index');
     }
 
