@@ -5,7 +5,7 @@ Magmaa task for Laravel 8
 Laravel 8 blog page for magmaa task .
 
 
-Just clone the project, ad do these steps to make it up and running!
+Just clone the project, and do these steps to make it up and running!
 
 
 Requirements
